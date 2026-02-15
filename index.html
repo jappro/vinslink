@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinceslink - Everyday Essentials, Gadgets & Realty</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    :root {
+        --primary-blue: #0033CC;
+        --primary-teal: #00BCD4;
+        --primary-orange: #FF8A3D;
+        --dark-gray: #2C3E50;
+        --light-gray: #F5F7FA;
+        --white: #FFFFFF;
+        --text-dark: #1A1A1A;
+        --text-light: #666666;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: var(--light-gray);
+        color: var(--text-dark);
+        line-height: 1.6;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode {
+        --light-gray: #1A1A1A;
+        --white: #2C2C2C;
+        --text-dark: #FFFFFF;
+        --text-light: #B0B0B0;
+        --dark-gray: #FFFFFF;
+    }
+
+    /* Navigation Styles */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 5%;
+        background-color: var(--white);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+    }
+
+    .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo-circle {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+        font-style: italic;
+    }
+
+    .logo-text {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--primary-blue);
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+        list-style: none;
+    }
+
+    .nav-menu li a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        font-size: 15px;
+        transition: color 0.3s ease;
+        position: relative;
+    }
+
+    .nav-menu li a:hover {
+        color: var(--primary-blue);
+    }
+
+    .nav-menu li a.active {
+        color: var(--primary-blue);
+    }
+
+    .nav-menu li a.active::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: var(--primary-blue);
+        border-radius: 2px;
+    }
+
+    .services-dropdown {
+        position: relative;
+    }
+
+    .dropdown-icon {
+        margin-left: 5px;
+        font-size: 12px;
+        transition: transform 0.3s ease;
+    }
+
+    .services-dropdown.active .dropdown-icon {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--white);
+        min-width: 200px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 10px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 100;
+    }
+
+    .services-dropdown:hover .dropdown-menu,
+    .services-dropdown.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu li {
+        list-style: none;
+    }
+
+    .dropdown-menu li a {
+        display: block;
+        padding: 12px 20px;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: var(--light-gray);
+        color: var(--primary-blue);
+        padding-left: 25px;
+    }
+
+    .dropdown-menu li:first-child a {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .dropdown-menu li:last-child a {
+        border-radius: 0 0 10px 10px;
+    }
+
+    .nav-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .signup-btn {
+        background-color: var(--primary-orange);
+        color: white;
+        padding: 12px 28px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .signup-btn:hover {
+        background-color: #FF7A2D;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 138, 61, 0.3);
+    }
+
+    .theme-toggle {
+        padding: 10px 20px;
+        border-radius: 25px;
+        border: 2px solid var(--text-light);
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-dark);
+        transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+        border-color: var(--primary-blue);
+        background-color: var(--primary-blue);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-dark);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        text-align: center;
+        padding: 5rem 5% 3rem;
+        background-color: var(--white);
+    }
+
+    .hero-title {
+        font-size: 72px;
+        font-weight: 800;
+        color: var(--primary-blue);
+        letter-spacing: -2px;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+    }
+
+    .hero-tagline {
+        font-size: 22px;
+        color: var(--text-dark);
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-tagline span {
+        color: var(--text-dark);
+    }
+
+    .hero-description {
+        font-size: 17px;
+        color: var(--text-light);
+        max-width: 700px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+    }
+
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 4rem;
+    }
+
+    .cta-btn {
+        padding: 16px 40px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .cta-btn-primary {
+        background-color: var(--primary-blue);
+        color: white;
+    }
+
+    .cta-btn-primary:hover {
+        background-color: #0028AA;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 51, 204, 0.3);
+    }
+
+    .cta-btn-secondary {
+        background-color: var(--primary-orange);
+        color: white;
+    }
+
+    .cta-btn-secondary:hover {
+        background-color: #FF7A2D;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 138, 61, 0.3);
+    }
+
+    .cta-btn-outline {
+        background-color: transparent;
+        color: var(--primary-blue);
+        border: 2px solid var(--primary-blue);
+    }
+
+    .cta-btn-outline:hover {
+        background-color: var(--primary-blue);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 51, 204, 0.2);
+    }
+
+    /* Product Carousel Section */
+    .carousel-section {
+        padding: 4rem 5%;
+        background-color: var(--light-gray);
+    }
+
+    .carousel-container {
+        position: relative;
+        max-width: 1400px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .carousel-track {
+        display: flex;
+        gap: 2rem;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .product-card {
+        min-width: 350px;
+        background-color: var(--white);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .product-info {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .product-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .product-category {
+        font-size: 14px;
+        color: var(--text-light);
+    }
+
+    /* Carousel Indicators */
+    .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 2rem;
+    }
+
+    .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #D0D0D0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .indicator.active {
+        background-color: var(--primary-blue);
+        width: 30px;
+        border-radius: 6px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .nav-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            flex-direction: column;
+            background-color: var(--white);
+            width: 100%;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .nav-menu.active {
+            left: 0;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+
+        .services-dropdown {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            position: static;
+            box-shadow: none;
+            margin-top: 0;
+            margin-left: 20px;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .services-dropdown.active .dropdown-menu {
+            max-height: 300px;
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 15px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+        }
+
+        .hero-tagline {
+            font-size: 18px;
+        }
+
+        .hero-description {
+            font-size: 15px;
+        }
+
+        .product-card {
+            min-width: 280px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 1rem 4%;
+        }
+
+        .hero-section {
+            padding: 3rem 4% 2rem;
+        }
+
+        .hero-title {
+            font-size: 36px;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-btn {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+
+        .product-card {
+            min-width: 250px;
+        }
+
+        .carousel-section {
+            padding: 3rem 4%;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-section">
+            <div class="logo-circle">VL</div>
+            <span class="logo-text">vinceslink</span>
+        </div>
+
+```
+    <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li class="services-dropdown" id="servicesDropdown">
+            <a href="#services" id="servicesLink">Services <span class="dropdown-icon">▼</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#gadgets">Gadget Hub</a></li>
+                <li><a href="#superstore">Super Store</a></li>
+                <li><a href="#realty">Real Estate</a></li>
+            </ul>
+        </li>
+        <li><a href="#shop">Shop Now</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="#signup" class="signup-btn" title="Coming Soon - E-Commerce Portal">Sign Up</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span id="themeIcon">🌙</span>
+            <span id="themeText">Dark</span>
+        </button>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section" id="home">
+    <h1 class="hero-title">VINCESLINK</h1>
+    <p class="hero-tagline">Everyday Essentials • Gadgets • Realty</p>
+    <p class="hero-description">
+        Everyday essentials, smart gadgets, and trusted real estate solutions—all in one place with Vinceslink.
+    </p>
+
+    <div class="cta-buttons">
+        <a href="#gadgets" class="cta-btn cta-btn-primary">
+            ⚡ Explore Gadgets
+        </a>
+        <a href="#superstore" class="cta-btn cta-btn-secondary">
+            🛒 Shop Essentials
+        </a>
+        <a href="#realty" class="cta-btn cta-btn-outline">
+            🏠 View Properties
+        </a>
+    </div>
+</section>
+
+<!-- Product Carousel Section -->
+<section class="carousel-section">
+    <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+            <!-- Product Card 1: Fast Charger -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Fast 9A Charger" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">PF-014 Fast 9A Charger</h3>
+                    <p class="product-category">Gadgets • Chargers</p>
+                </div>
+            </div>
+
+            <!-- Product Card 2: Headset -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="P-31 Headset HD Sound" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">P-31 Headset HD Sound</h3>
+                    <p class="product-category">Gadgets • Audio</p>
+                </div>
+            </div>
+
+            <!-- Product Card 3: Ice Cream -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="FanIce Ice Cream" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">FanIce Ice Cream</h3>
+                    <p class="product-category">Super Store • Frozen</p>
+                </div>
+            </div>
+
+            <!-- Product Card 4: Cosmetics -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Premium Cosmetics" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Premium Cosmetics</h3>
+                    <p class="product-category">Super Store • Beauty</p>
+                </div>
+            </div>
+
+            <!-- Product Card 5: Land Property -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Land Property" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Prime Land Property</h3>
+                    <p class="product-category">Real Estate • Land</p>
+                </div>
+            </div>
+
+            <!-- Product Card 6: House -->
+            <div class="product-card">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Residential House" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Modern Residential House</h3>
+                    <p class="product-category">Real Estate • Housing</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-indicators">
+            <div class="indicator active" data-slide="0"></div>
+            <div class="indicator" data-slide="1"></div>
+            <div class="indicator" data-slide="2"></div>
+            <div class="indicator" data-slide="3"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // Services Dropdown Toggle for Mobile
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    const servicesLink = document.getElementById('servicesLink');
+
+    servicesLink.addEventListener('click', (e) => {
+        // Only prevent default and toggle on mobile
+        if (window.innerWidth <= 1024) {
+            e.preventDefault();
+            servicesDropdown.classList.toggle('active');
+        }
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    const body = document.body;
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            themeIcon.textContent = '☀️';
+            themeText.textContent = 'Light';
+        } else {
+            themeIcon.textContent = '🌙';
+            themeText.textContent = 'Dark';
+        }
+    });
+
+    // Product Carousel
+    const carouselTrack = document.getElementById('carouselTrack');
+    const indicators = document.querySelectorAll('.indicator');
+    let currentSlide = 0;
+    let autoSlideInterval;
+
+    // Touch/Swipe variables
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+
+    function updateCarousel(slideIndex) {
+        const cardWidth = 350; // min-width of product card
+        const gap = 32; // 2rem gap
+        const offset = slideIndex * (cardWidth + gap);
+        
+        carouselTrack.style.transform = `translateX(-${offset}px)`;
+        
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === slideIndex);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % indicators.length;
+        updateCarousel(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + indicators.length) % indicators.length;
+        updateCarousel(currentSlide);
+    }
+
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
+    // Manual indicator click
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentSlide = index;
+            updateCarousel(currentSlide);
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto-slide after manual interaction
+        });
+    });
+
+    // Touch/Swipe Events
+    carouselTrack.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAutoSlide();
+    });
+
+    carouselTrack.addEventListener('touchmove', (e) => {
+        touchEndX = e.touches[0].clientX;
+    });
+
+    carouselTrack.addEventListener('touchend', () => {
+        handleSwipe();
+        startAutoSlide();
+    });
+
+    // Mouse drag events for desktop
+    carouselTrack.addEventListener('mousedown', (e) => {
+        touchStartX = e.clientX;
+        isDragging = true;
+        stopAutoSlide();
+        carouselTrack.style.cursor = 'grabbing';
+    });
+
+    carouselTrack.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        touchEndX = e.clientX;
+    });
+
+    carouselTrack.addEventListener('mouseup', () => {
+        if (isDragging) {
+            handleSwipe();
+            isDragging = false;
+            carouselTrack.style.cursor = 'grab';
+            startAutoSlide();
+        }
+    });
+
+    carouselTrack.addEventListener('mouseleave', () => {
+        if (isDragging) {
+            isDragging = false;
+            carouselTrack.style.cursor = 'grab';
+            startAutoSlide();
+        }
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimum swipe distance
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next slide
+                nextSlide();
+            } else {
+                // Swipe right - previous slide
+                prevSlide();
+            }
+        }
+
+        touchStartX = 0;
+        touchEndX = 0;
+    }
+
+    // Pause carousel on hover
+    carouselTrack.addEventListener('mouseenter', () => {
+        if (!isDragging) stopAutoSlide();
+        carouselTrack.style.cursor = 'grab';
+    });
+    
+    carouselTrack.addEventListener('mouseleave', () => {
+        if (!isDragging) startAutoSlide();
+        carouselTrack.style.cursor = 'default';
+    });
+
+    // Start auto-slide on page load
+    startAutoSlide();
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                // Close mobile menu after clicking
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+</script>
+```
+
+</body>
+</html>
