@@ -12,6 +12,11 @@
             box-sizing: border-box;
         }
 
+    html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+    }
+
     :root {
         --primary-blue: #0033CC;
         --primary-teal: #00BCD4;
@@ -24,6 +29,12 @@
     }
 
     body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--light-gray);
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         background-color: var(--light-gray);
         color: var(--text-dark);
@@ -59,18 +70,10 @@
         gap: 12px;
     }
 
-    .logo-circle {
+    .logo-img {
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-        font-size: 24px;
-        font-style: italic;
+        object-fit: contain;
     }
 
     .logo-text {
@@ -246,8 +249,9 @@
     /* Hero Section */
     .hero-section {
         text-align: center;
-        padding: 5rem 5% 3rem;
+        padding: 6rem 5% 4rem;
         background-color: var(--white);
+        position: relative;
     }
 
     .hero-title {
@@ -255,8 +259,20 @@
         font-weight: 800;
         color: var(--primary-blue);
         letter-spacing: -2px;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         line-height: 1.1;
+        animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .hero-tagline {
@@ -359,12 +375,12 @@
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
     }
 
     .product-image {
@@ -426,17 +442,19 @@
     }
 
     .section-title {
-        font-size: 48px;
+        font-size: 52px;
         font-weight: 800;
         color: var(--text-dark);
-        letter-spacing: -1px;
+        letter-spacing: -1.5px;
         text-transform: uppercase;
+        margin-bottom: 1rem;
+        animation: fadeInUp 0.8s ease;
     }
 
     .business-cards-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-        gap: 3rem;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 3.5rem;
         max-width: 1500px;
         margin: 0 auto;
     }
@@ -445,15 +463,15 @@
         background-color: var(--white);
         border-radius: 25px;
         overflow: hidden;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        transition: all 0.4s ease;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
     }
 
     .business-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        transform: translateY(-20px) scale(1.03);
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
     }
 
     .card-image-wrapper {
@@ -527,8 +545,1226 @@
         box-shadow: 0 5px 20px rgba(255, 138, 61, 0.4);
     }
 
+    /* Marketplace Section */
+    .marketplace-section {
+        padding: 6rem 5%;
+        background: linear-gradient(135deg, #0D47A1 0%, #1976D2 50%, #42A5F5 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .marketplace-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .marketplace-content {
+        color: white;
+    }
+
+    .marketplace-title {
+        font-size: 56px;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        letter-spacing: -1px;
+    }
+
+    .marketplace-subtitle {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .marketplace-description {
+        font-size: 18px;
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+    }
+
+    .coming-soon-btn {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 3px solid white;
+        color: white;
+        padding: 18px 50px;
+        border-radius: 50px;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        margin-bottom: 3rem;
+    }
+
+    .coming-soon-btn:hover {
+        background-color: white;
+        color: var(--primary-blue);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .cart-illustration {
+        max-width: 400px;
+    }
+
+    .cart-image {
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    }
+
+    /* iPhone Mockup */
+    .iphone-mockup {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .iphone-frame {
+        width: 345px;
+        height: 700px;
+        background: #1A1A1A;
+        border-radius: 48px;
+        padding: 8px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        position: relative;
+        border: 3px solid #2C2C2C;
+    }
+
+    .dynamic-island {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90px;
+        height: 26px;
+        background: #000;
+        border-radius: 16px;
+        z-index: 10;
+    }
+
+    .iphone-screen {
+        width: 100%;
+        height: 100%;
+        background: #FFFFFF !important;
+        border-radius: 40px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Ensure iPhone screen always stays white regardless of dark mode */
+    body.dark-mode .iphone-screen,
+    body.dark-mode .screen-header,
+    body.dark-mode .screen-content,
+    body.dark-mode .status-bar,
+    body.dark-mode .app-header,
+    body.dark-mode .horizontal-tabs,
+    body.dark-mode .featured-banner,
+    body.dark-mode .products-grid {
+        background: #FFFFFF !important;
+        color: #1A1A1A !important;
+    }
+
+    body.dark-mode .iphone-screen * {
+        color: inherit !important;
+    }
+
+    /* Override all iPhone mockup elements specifically */
+    body.dark-mode .iphone-screen,
+    body.dark-mode .iphone-screen *,
+    body.dark-mode .iphone-screen .status-bar,
+    body.dark-mode .iphone-screen .app-header,
+    body.dark-mode .iphone-screen .app-name,
+    body.dark-mode .iphone-screen .menu-dots,
+    body.dark-mode .iphone-screen .tab-btn,
+    body.dark-mode .iphone-screen .tab-btn.active,
+    body.dark-mode .iphone-screen .featured-banner,
+    body.dark-mode .iphone-screen .badge-verified,
+    body.dark-mode .iphone-screen .badge-secured,
+    body.dark-mode .iphone-screen .products-grid,
+    body.dark-mode .iphone-screen .product-item,
+    body.dark-mode .iphone-screen .product-name,
+    body.dark-mode .iphone-screen .product-price {
+        background-color: #FFFFFF !important;
+        background: #FFFFFF !important;
+        color: #1A1A1A !important;
+    }
+
+    body.dark-mode .iphone-screen .tab-btn.active {
+        background-color: #0033CC !important;
+        color: #FFFFFF !important;
+    }
+
+    body.dark-mode .iphone-screen .badge-verified {
+        background: #4CAF50 !important;
+        color: white !important;
+    }
+
+    body.dark-mode .iphone-screen .badge-secured {
+        background: #0033CC !important;
+        color: white !important;
+    }
+
+    body.dark-mode .iphone-screen .product-price {
+        color: #0033CC !important;
+    }
+
+    body.dark-mode .iphone-screen .app-name {
+        color: #0033CC !important;
+    }
+
+    .iphone-screen::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    .iphone-screen::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .iphone-screen::-webkit-scrollbar-thumb {
+        background: #CCCCCC;
+        border-radius: 10px;
+    }
+
+    /* Fixed Header Section */
+    .screen-header {
+        flex-shrink: 0;
+    }
+
+    /* Scrollable Content Section */
+    .screen-content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .screen-content::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    .screen-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .screen-content::-webkit-scrollbar-thumb {
+        background: #CCCCCC;
+        border-radius: 10px;
+    }
+
+    /* Status Bar */
+    .status-bar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 2px 22px;
+        padding-top: 12px;
+        background: white;
+        color: #1A1A1A;
+    }
+
+    .status-time {
+        display: none;
+    }
+
+    .status-icons {
+        display: flex;
+        gap: 3px;
+        align-items: center;
+    }
+
+    .status-icon {
+        opacity: 1;
+    }
+
+    /* App Header */
+    .app-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background: white;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .app-logo-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .app-name {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-blue);
+    }
+
+    .menu-dots {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: var(--text-dark);
+        cursor: pointer;
+    }
+
+    /* Horizontal Tabs */
+    .horizontal-tabs {
+        display: flex;
+        gap: 8px;
+        padding: 12px 15px;
+        background: white;
+        overflow-x: auto;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .horizontal-tabs::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .horizontal-tabs::-webkit-scrollbar-thumb {
+        background: #CCCCCC;
+        border-radius: 10px;
+    }
+
+    .tab-btn {
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: none;
+        background: #F5F5F5;
+        color: var(--text-dark);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    .tab-btn:hover {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    /* Featured Banner */
+    .featured-banner {
+        margin: 15px;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .featured-image {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        pointer-events: none;
+    }
+
+    .featured-badges {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        display: flex;
+        gap: 6px;
+    }
+
+    .badge-verified {
+        background: #4CAF50;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+    .badge-secured {
+        background: var(--primary-blue);
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+    /* Products Grid */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        padding: 15px;
+        padding-bottom: 30px;
+    }
+
+    .product-item {
+        background: #F8F9FA;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .product-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-img {
+        width: 100%;
+        height: 85px;
+        object-fit: cover;
+    }
+
+    .product-name {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-dark);
+        padding: 8px 8px 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .product-price {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--primary-blue);
+        padding: 0 8px 8px;
+    }
+
+    /* Coming Soon Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        backdrop-filter: blur(5px);
+    }
+
+    .modal.show {
+        display: flex;
+    }
+
+    .modal-content {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 400px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+        from {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .modal-content h3 {
+        font-size: 32px;
+        margin-bottom: 1rem;
+        color: var(--primary-blue);
+    }
+
+    .modal-content p {
+        font-size: 16px;
+        color: var(--text-light);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .modal-close {
+        background: var(--primary-blue);
+        color: white;
+        border: none;
+        padding: 12px 40px;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+        background: #0028AA;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 51, 204, 0.3);
+    }
+
+    /* Terms & Conditions Modal */
+    .terms-modal {
+        z-index: 10001;
+    }
+
+    .terms-content {
+        max-width: 600px;
+        padding: 2.5rem;
+    }
+
+    .terms-title {
+        font-size: 32px;
+        color: var(--primary-blue);
+        margin-bottom: 1.5rem;
+    }
+
+    .terms-body {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 2rem;
+        padding-right: 1rem;
+    }
+
+    .terms-body::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .terms-body::-webkit-scrollbar-track {
+        background: #F0F0F0;
+        border-radius: 10px;
+    }
+
+    .terms-body::-webkit-scrollbar-thumb {
+        background: var(--primary-blue);
+        border-radius: 10px;
+    }
+
+    .terms-body h4 {
+        font-size: 18px;
+        color: var(--text-dark);
+        margin: 1.5rem 0 0.8rem;
+    }
+
+    .terms-body p {
+        font-size: 15px;
+        color: var(--text-light);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    .terms-body ul {
+        margin: 1rem 0 1rem 1.5rem;
+    }
+
+    .terms-body li {
+        font-size: 15px;
+        color: var(--text-light);
+        line-height: 1.7;
+        margin-bottom: 0.5rem;
+    }
+
+    .terms-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .terms-btn {
+        padding: 14px 40px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+    }
+
+    .deny-btn {
+        background-color: transparent;
+        color: var(--text-dark);
+        border: 2px solid #D0D0D0;
+    }
+
+    .deny-btn:hover {
+        background-color: #F5F5F5;
+        border-color: var(--text-dark);
+    }
+
+    .accept-btn {
+        background-color: var(--primary-blue);
+        color: white;
+    }
+
+    .accept-btn:hover {
+        background-color: #0028AA;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 51, 204, 0.3);
+    }
+
+    /* About Vinceslink Section */
+    .about-section {
+        padding: 7rem 5%;
+        background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 50%, #90CAF9 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            url("data:image/svg+xml,%3Csvg width='1440' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,400 Q360,300 720,400 T1440,400 L1440,800 L0,800 Z' fill='%23ffffff' opacity='0.05'/%3E%3Cpath d='M0,500 Q360,400 720,500 T1440,500 L1440,800 L0,800 Z' fill='%23ffffff' opacity='0.05'/%3E%3Cpath d='M0,600 Q360,500 720,600 T1440,600 L1440,800 L0,800 Z' fill='%23ffffff' opacity='0.1'/%3E%3C/svg%3E");
+        background-size: cover;
+        background-position: center;
+        pointer-events: none;
+        opacity: 0.6;
+    }
+
+    .about-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about-title {
+        font-size: 48px;
+        font-weight: 800;
+        text-align: center;
+        color: var(--text-dark);
+        margin-bottom: 4rem;
+        letter-spacing: -1px;
+    }
+
+    .about-content {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 4rem;
+        align-items: start;
+    }
+
+    .about-left {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .about-block {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(10px);
+    }
+
+    .about-subtitle {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .story-title {
+        color: var(--primary-blue);
+    }
+
+    .mission-title {
+        color: var(--primary-teal);
+    }
+
+    .vision-title {
+        color: var(--primary-orange);
+    }
+
+    .about-text {
+        font-size: 16px;
+        line-height: 1.8;
+        color: var(--text-light);
+    }
+
+    .about-right {
+        position: sticky;
+        top: 100px;
+    }
+
+    .founder-card {
+        background: linear-gradient(135deg, #2C3E50 0%, #00BCD4 100%);
+        padding: 2.5rem;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .founder-image-wrapper {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 5px solid white;
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .founder-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .founder-name {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--primary-blue);
+        margin-bottom: 0.5rem;
+    }
+
+    .founder-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary-orange);
+        margin-bottom: 1.5rem;
+        opacity: 1;
+    }
+
+    .founder-bio {
+        font-size: 15px;
+        line-height: 1.7;
+        color: white;
+        opacity: 0.9;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        padding: 5rem 5%;
+        background-color: var(--light-gray);
+        text-align: center;
+    }
+
+    .faq-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .faq-title {
+        font-size: 56px;
+        font-weight: 800;
+        color: var(--primary-orange);
+        margin-bottom: 1.5rem;
+    }
+
+    .faq-subtitle {
+        font-size: 17px;
+        color: var(--text-light);
+        margin-bottom: 3rem;
+        line-height: 1.6;
+    }
+
+    .faq-accordion {
+        max-width: 800px;
+        margin: 0 auto 3rem;
+        text-align: left;
+    }
+
+    .faq-item {
+        background-color: white;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-question {
+        width: 100%;
+        padding: 1.5rem 2rem;
+        background: none;
+        border: none;
+        text-align: left;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--text-dark);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: color 0.3s ease;
+    }
+
+    .faq-question:hover {
+        color: var(--primary-blue);
+    }
+
+    .faq-toggle {
+        font-size: 24px;
+        font-weight: 400;
+        color: var(--primary-teal);
+        transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+        transform: rotate(45deg);
+    }
+
+    .faq-item.active .faq-question {
+        color: var(--primary-blue);
+    }
+
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+        padding: 0 2rem;
+    }
+
+    .faq-item.active .faq-answer {
+        max-height: 500px;
+        padding: 0 2rem 1.5rem;
+    }
+
+    .faq-answer p {
+        color: var(--text-light);
+        line-height: 1.7;
+        font-size: 15px;
+    }
+
+    .view-faq-btn {
+        display: inline-block;
+        background-color: var(--primary-blue);
+        color: white;
+        padding: 15px 45px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        margin-bottom: 4rem;
+    }
+
+    .view-faq-btn:hover {
+        background-color: #0028AA;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 51, 204, 0.3);
+    }
+
+    .faq-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .faq-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 25px;
+        background-color: white;
+        border-radius: 25px;
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .faq-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        color: var(--primary-blue);
+    }
+
+    .faq-icon {
+        font-size: 18px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+        padding: 6rem 5%;
+        background-color: white;
+    }
+
+    .contact-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .contact-title {
+        font-size: 48px;
+        font-weight: 800;
+        text-align: center;
+        color: var(--text-dark);
+        margin-bottom: 4rem;
+        letter-spacing: -1px;
+    }
+
+    .newsletter-section {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 5rem;
+    }
+
+    .newsletter-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--primary-blue);
+        margin-bottom: 1rem;
+    }
+
+    .newsletter-text {
+        font-size: 16px;
+        color: var(--text-light);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 1rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .newsletter-input {
+        flex: 1;
+        padding: 15px 25px;
+        border: 2px solid #E0E0E0;
+        border-radius: 30px;
+        font-size: 15px;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .newsletter-input:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 3px rgba(0, 51, 204, 0.1);
+    }
+
+    .newsletter-btn {
+        padding: 15px 40px;
+        background-color: var(--primary-teal);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+        background-color: #00A5BB;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 4rem;
+    }
+
+    .contact-card {
+        background-color: var(--light-gray);
+        padding: 2.5rem 2rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+    }
+
+    .contact-card-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--primary-blue);
+        margin-bottom: 1rem;
+    }
+
+    .contact-card-link {
+        display: inline-block;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .contact-card-link:hover {
+        color: var(--primary-blue);
+    }
+
+    .contact-card-text {
+        font-size: 15px;
+        color: var(--text-light);
+        line-height: 1.6;
+    }
+
+    .social-section {
+        text-align: center;
+        padding: 3rem 0;
+        border-top: 2px solid var(--light-gray);
+    }
+
+    .social-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 2rem;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .social-link {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .social-link:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .social-link.facebook {
+        background-color: #1877F2;
+    }
+
+    .social-link.instagram {
+        background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+    }
+
+    .social-link.tiktok {
+        background-color: #000000;
+    }
+
+    .social-link.whatsapp {
+        background-color: #25D366;
+    }
+
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #1A1A1A 0%, #2C2C2C 100%);
+        color: white;
+        padding: 4rem 5% 2rem;
+    }
+
+    .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .footer-top {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer-logo-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1rem;
+    }
+
+    .footer-logo-img {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+    }
+
+    .footer-logo-text {
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+    }
+
+    .footer-tagline {
+        font-size: 14px;
+        color: var(--primary-teal);
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-description {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+    }
+
+    .footer-heading {
+        font-size: 18px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: var(--primary-teal);
+        padding-left: 5px;
+    }
+
+    .footer-location {
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-location h5 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--primary-orange);
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-location p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.5;
+    }
+
+    .footer-contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .footer-contact-icon {
+        font-size: 18px;
+    }
+
+    .footer-contact-item a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .footer-contact-item a:hover {
+        color: var(--primary-teal);
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .footer-social-link {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .footer-social-link:hover {
+        background-color: var(--primary-teal);
+        transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .footer-credits p,
+    .footer-copyright p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 0.3rem 0;
+    }
+
+    .partner-link,
+    .dev-link {
+        color: var(--primary-teal);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .partner-link:hover,
+    .dev-link:hover {
+        color: var(--primary-orange);
+    }
+
     /* Responsive Design */
+    /* Tablet Responsive Styles */
     @media (max-width: 1024px) {
+        html {
+            font-size: 15px;
+        }
+
         .nav-menu {
             position: fixed;
             top: 80px;
@@ -577,11 +1813,26 @@
         }
 
         .hero-title {
-            font-size: 48px;
+            font-size: 56px;
+            letter-spacing: -1.5px;
         }
 
         .hero-tagline {
-            font-size: 18px;
+            font-size: 19px;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            gap: 1rem;
+        }
+
+        .hero-btn {
+            padding: 14px 32px;
+            font-size: 15px;
         }
 
         .hero-description {
@@ -608,24 +1859,116 @@
         .section-title {
             font-size: 36px;
         }
+
+        .marketplace-container {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .marketplace-title {
+            font-size: 40px;
+        }
+
+        .marketplace-subtitle {
+            font-size: 26px;
+        }
+
+        .iphone-frame {
+            width: 320px;
+            height: 650px;
+        }
+
+        .cart-illustration {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .about-right {
+            position: static;
+        }
+
+        .about-title {
+            font-size: 36px;
+        }
+
+        .faq-title {
+            font-size: 42px;
+        }
+
+        .faq-links {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .faq-link {
+            width: 100%;
+            max-width: 350px;
+            justify-content: center;
+        }
+
+        .contact-title {
+            font-size: 36px;
+        }
+
+        .newsletter-form {
+            flex-direction: column;
+        }
+
+        .newsletter-btn {
+            width: 100%;
+        }
+
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
     @media (max-width: 768px) {
+        html {
+            font-size: 14px;
+        }
+
         .navbar {
-            padding: 1rem 4%;
+            padding: 1rem 5%;
+        }
+
+        .logo-text {
+            font-size: 24px;
         }
 
         .hero-section {
-            padding: 3rem 4% 2rem;
+            padding: 4rem 5% 3rem;
         }
 
         .hero-title {
-            font-size: 36px;
+            font-size: 42px;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-tagline {
+            font-size: 17px;
+        }
+
+        .hero-description {
+            font-size: 15px;
         }
 
         .cta-buttons {
             flex-direction: column;
             align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-btn {
+            width: 100%;
+            max-width: 300px;
+            padding: 14px 24px;
         }
 
         .cta-btn {
@@ -657,6 +2000,114 @@
         .card-title {
             font-size: 24px;
         }
+
+        .marketplace-section {
+            padding: 3rem 4%;
+        }
+
+        .marketplace-title {
+            font-size: 32px;
+        }
+
+        .marketplace-subtitle {
+            font-size: 22px;
+        }
+
+        .marketplace-description {
+            font-size: 16px;
+        }
+
+        .coming-soon-btn {
+            padding: 15px 35px;
+            font-size: 16px;
+        }
+
+        .iphone-frame {
+            width: 290px;
+            height: 590px;
+        }
+
+        .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .modal-content {
+            margin: 0 20px;
+            padding: 2rem;
+        }
+
+        .about-section {
+            padding: 3rem 4%;
+        }
+
+        .about-title {
+            font-size: 28px;
+            margin-bottom: 2.5rem;
+        }
+
+        .about-subtitle {
+            font-size: 22px;
+        }
+
+        .about-block {
+            padding: 1.5rem;
+        }
+
+        .founder-image-wrapper {
+            width: 150px;
+            height: 150px;
+        }
+
+        .founder-name {
+            font-size: 26px;
+        }
+
+        .faq-section {
+            padding: 3rem 4%;
+        }
+
+        .faq-title {
+            font-size: 36px;
+        }
+
+        .faq-subtitle {
+            font-size: 15px;
+        }
+
+        .view-faq-btn {
+            padding: 12px 35px;
+            font-size: 15px;
+        }
+
+        .contact-section {
+            padding: 3rem 4%;
+        }
+
+        .contact-title {
+            font-size: 28px;
+        }
+
+        .newsletter-title {
+            font-size: 26px;
+        }
+
+        .newsletter-input {
+            padding: 12px 20px;
+        }
+
+        .social-title {
+            font-size: 24px;
+        }
+
+        .footer-top {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
     }
 </style>
 
@@ -665,7 +2116,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-section">
-            <div class="logo-circle">VL</div>
+            <img src="" alt="Vinceslink Logo" class="logo-img">
             <span class="logo-text">vinceslink</span>
         </div>
 
@@ -838,6 +2289,529 @@
         </div>
     </div>
 </section>
+
+<!-- Marketplace Section -->
+<section class="marketplace-section" id="shop">
+    <div class="marketplace-container">
+        <!-- Left Content -->
+        <div class="marketplace-content">
+            <h2 class="marketplace-title">MARKETPLACE</h2>
+            <h3 class="marketplace-subtitle">Ready to shop?</h3>
+            <p class="marketplace-description">
+                Experience seamless shopping with our upcoming e-commerce platform
+            </p>
+            <button class="coming-soon-btn" id="comingSoonBtn">
+                🛍️ COMING SOON 😊
+            </button>
+            <div class="cart-illustration">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Shopping Cart" class="cart-image">
+            </div>
+        </div>
+
+        <!-- Right Content - iPhone Mockup -->
+        <div class="iphone-mockup">
+            <div class="iphone-frame">
+                <!-- Dynamic Island -->
+                <div class="dynamic-island"></div>
+                
+                <!-- iPhone Screen -->
+                <div class="iphone-screen">
+                    <!-- Fixed Header Section -->
+                    <div class="screen-header">
+                        <!-- Status Bar -->
+                        <div class="status-bar">
+                            <span class="status-time">9:41</span>
+                            <div class="status-icons">
+                                <!-- Signal Icon -->
+                                <svg class="status-icon" width="14" height="10" viewBox="0 0 14 10" fill="none">
+                                    <rect x="0" y="6.5" width="2.5" height="3.5" rx="0.5" fill="#1A1A1A"/>
+                                    <rect x="4" y="4" width="2.5" height="6" rx="0.5" fill="#1A1A1A"/>
+                                    <rect x="8" y="1.5" width="2.5" height="8.5" rx="0.5" fill="#1A1A1A"/>
+                                    <rect x="12" y="0" width="2" height="10" rx="0.5" fill="#1A1A1A"/>
+                                </svg>
+                                <!-- WiFi Icon -->
+                                <svg class="status-icon" width="14" height="10" viewBox="0 0 14 10" fill="none">
+                                    <path d="M7 10C7.55 10 8 9.55 8 9C8 8.45 7.55 8 7 8C6.45 8 6 8.45 6 9C6 9.55 6.45 10 7 10Z" fill="#1A1A1A"/>
+                                    <path d="M3.5 6.3C4.7 5.1 6 4.6 7 4.6C8 4.6 9.3 5.1 10.5 6.3L9.5 7.3C8.5 6.3 7.7 6 7 6C6.3 6 5.5 6.3 4.5 7.3L3.5 6.3Z" fill="#1A1A1A"/>
+                                    <path d="M1 3.8C3 1.8 5 1 7 1C9 1 11 1.8 13 3.8L12 4.8C10.2 3 8.5 2.5 7 2.5C5.5 2.5 3.8 3 2 4.8L1 3.8Z" fill="#1A1A1A"/>
+                                </svg>
+                                <!-- Battery Icon -->
+                                <svg class="status-icon" width="22" height="10" viewBox="0 0 22 10" fill="none">
+                                    <rect x="0.5" y="0.5" width="18" height="9" rx="2" stroke="#1A1A1A" stroke-width="0.8" fill="none"/>
+                                    <rect x="1.8" y="1.8" width="15.4" height="6.4" rx="1.2" fill="#1A1A1A"/>
+                                    <path d="M20 3C20 2.72 20.22 2.5 20.5 2.5C20.78 2.5 21 2.72 21 3V7C21 7.28 20.78 7.5 20.5 7.5C20.22 7.5 20 7.28 20 7V3Z" fill="#1A1A1A" opacity="0.4"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- App Header -->
+                        <div class="app-header">
+                            <div class="app-logo-section">
+                                <span class="app-name">VINCESLINK</span>
+                            </div>
+                            <button class="menu-dots">⋯</button>
+                        </div>
+
+                        <!-- Horizontal Tabs -->
+                        <div class="horizontal-tabs">
+                            <button class="tab-btn active" onclick="showComingSoon()">Marketplace</button>
+                            <button class="tab-btn" onclick="showComingSoon()">History</button>
+                            <button class="tab-btn" onclick="showComingSoon()">Cart</button>
+                            <button class="tab-btn" onclick="showComingSoon()">Profile</button>
+                        </div>
+
+                        <!-- Featured Banner -->
+                        <div class="featured-banner">
+                            <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Featured" class="featured-image">
+                            <div class="featured-badges">
+                                <span class="badge-verified">✓ Verified</span>
+                                <span class="badge-secured">🔒 Secured</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scrollable Products Section -->
+                    <div class="screen-content">
+                        <!-- Products Grid -->
+                        <div class="products-grid">
+                            <!-- Product 1 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">Wireless Charger</p>
+                                <p class="product-price">$8,500</p>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">Fast Charger</p>
+                                <p class="product-price">$6,200</p>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">Wireless Headset</p>
+                                <p class="product-price">$15,000</p>
+                            </div>
+
+                            <!-- Product 4 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">Apple</p>
+                                <p class="product-price">$500</p>
+                            </div>
+
+                            <!-- Product 5 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">USB-C Cable</p>
+                                <p class="product-price">$3,500</p>
+                            </div>
+
+                            <!-- Product 6 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">EarPods</p>
+                                <p class="product-price">$12,000</p>
+                            </div>
+
+                            <!-- Product 7 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">Cream Jar</p>
+                                <p class="product-price">$7,800</p>
+                            </div>
+
+                            <!-- Product 8 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">Bottle of Wine</p>
+                                <p class="product-price">$18,500</p>
+                            </div>
+
+                            <!-- Product 9 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">Flash Drive 32GB</p>
+                                <p class="product-price">$4,200</p>
+                            </div>
+
+                            <!-- Product 10 -->
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
+                                <p class="product-name">Power Bank</p>
+                                <p class="product-price">$9,500</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Vinceslink Section -->
+<section class="about-section" id="about">
+    <div class="about-container">
+        <h2 class="about-title">ABOUT VINCESLINK</h2>
+        
+        <div class="about-content">
+            <!-- Left Content -->
+            <div class="about-left">
+                <!-- Our Story -->
+                <div class="about-block">
+                    <h3 class="about-subtitle story-title">Our Story</h3>
+                    <p class="about-text">
+                        Vinceslink was founded with a vision to simplify modern living by bringing together three essential aspects of daily life: technology, everyday essentials, and property solutions. What started as a passion for providing quality gadgets has evolved into a multi-industry brand committed to excellence and customer satisfaction.
+                    </p>
+                </div>
+
+                <!-- Our Mission -->
+                <div class="about-block">
+                    <h3 class="about-subtitle mission-title">Our Mission</h3>
+                    <p class="about-text">
+                        To deliver exceptional value through quality products and reliable services while maintaining transparency, trust, and convenience in every customer interaction. We strive to be the go-to platform where technology meets lifestyle and opportunity meets reality.
+                    </p>
+                </div>
+
+                <!-- Our Vision -->
+                <div class="about-block">
+                    <h3 class="about-subtitle vision-title">Our Vision</h3>
+                    <p class="about-text">
+                        To become Nigeria's leading multi-industry ecosystem, where customers can access authentic gadgets, essential household items, and trusted real estate services all in one seamless experience. We envision a future where Vinceslink is synonymous with quality, trust, and innovation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Content - Founder Card -->
+            <div class="about-right">
+                <div class="founder-card">
+                    <div class="founder-image-wrapper">
+                        <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Vincent - Founder" class="founder-image">
+                    </div>
+                    <h3 class="founder-name">Vincent Nwankwuda</h3>
+                    <p class="founder-title">Founder & CEO</p>
+                    <p class="founder-bio">
+                        Driven by a passion for innovation and service excellence, Vincent established Vinceslink to bridge the gap between quality products and accessible services in Nigeria's growing market. His vision continues to guide our commitment to customer satisfaction and business integrity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section" id="faq">
+    <div class="faq-container">
+        <h2 class="faq-title">FAQ</h2>
+        <p class="faq-subtitle">Have questions? We've got answers! Click below to view all frequently asked questions.</p>
+        
+        <div class="faq-accordion">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I place an order?</span>
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Currently, you can browse our products and contact us directly via phone or WhatsApp to place orders. Our e-commerce platform is coming soon for a seamless online shopping experience with cart, checkout, and payment features.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What are your delivery options?</span>
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>We offer delivery services across Ogun State and Lagos. Delivery fees vary based on location and order size. Contact us for specific delivery timelines and costs for your area. We ensure safe and timely delivery of all products.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How does the real estate consultation work?</span>
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Contact us with your property interests and budget range. Our team will schedule a consultation within 24 hours to discuss available options, arrange property viewings, and guide you through the entire process from selection to documentation.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What is your refund and return policy?</span>
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>We accept returns for defective products within 7 days of purchase. Products must be in original condition with all packaging and accessories. Contact our support team to initiate a return request, and refunds will be processed within 14 business days.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Are your gadgets authentic?</span>
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely! We partner with Paul Feng and other trusted suppliers to ensure all gadgets are 100% authentic with manufacturer warranties. We stand behind the quality of every product we sell.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What are your customer support hours?</span>
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Our customer support team is available Monday to Saturday, 9:00 AM - 6:00 PM WAT. You can reach us via phone, email, or WhatsApp during these hours. We aim to respond to all inquiries within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-links">
+            <a href="#" class="faq-link" onclick="showTermsModal(); return false;">
+                <span class="faq-icon">📄</span>
+                Terms & Conditions
+            </a>
+            <a href="#" class="faq-link" onclick="showComingSoon(); return false;">
+                <span class="faq-icon">🔒</span>
+                Privacy Policy
+            </a>
+            <a href="mailto:vinceslink@gmail.com?subject=Support Request" class="faq-link">
+                <span class="faq-icon">💬</span>
+                Contact Support
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+    <div class="contact-container">
+        <h2 class="contact-title">GET IN TOUCH</h2>
+        
+        <!-- Newsletter Section -->
+        <div class="newsletter-section">
+            <h3 class="newsletter-title">Stay Updated</h3>
+            <p class="newsletter-text">Subscribe to our newsletter for exclusive deals, new arrivals, and property listings</p>
+            <form class="newsletter-form" onsubmit="showComingSoon(); return false;">
+                <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+
+        <!-- Contact Info Grid -->
+        <div class="contact-grid">
+            <!-- Call Us -->
+            <div class="contact-card">
+                <div class="contact-icon-wrapper">
+                    <svg class="contact-icon" width="30" height="30" viewBox="0 0 24 24" fill="white">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                </div>
+                <h4 class="contact-card-title">Call Us</h4>
+                <a href="tel:+2349078683552" class="contact-card-link">+234 907 868 3552</a>
+            </div>
+
+            <!-- Email Us -->
+            <div class="contact-card">
+                <div class="contact-icon-wrapper">
+                    <svg class="contact-icon" width="30" height="30" viewBox="0 0 24 24" fill="white">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </div>
+                <h4 class="contact-card-title">Email Us</h4>
+                <a href="mailto:vinceslink@gmail.com" class="contact-card-link">vinceslink@gmail.com</a>
+            </div>
+
+            <!-- Gadgets Hub -->
+            <div class="contact-card">
+                <div class="contact-icon-wrapper">
+                    <svg class="contact-icon" width="30" height="30" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                </div>
+                <h4 class="contact-card-title">Gadgets Hub</h4>
+                <p class="contact-card-text">No. 12 Ijoko Rd, Opposite African Church, Sango, Ota, Ogun State</p>
+            </div>
+
+            <!-- Super Store / Head Office -->
+            <div class="contact-card">
+                <div class="contact-icon-wrapper">
+                    <svg class="contact-icon" width="30" height="30" viewBox="0 0 24 24" fill="white">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                </div>
+                <h4 class="contact-card-title">Super Store / Head Office</h4>
+                <p class="contact-card-text">No. 91 Ishaka Road, Ijako, Ogun State</p>
+            </div>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <h3 class="social-title">Follow Us</h3>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/17XjXSBeR1/?mibextid=wwXIfr" target="_blank" class="social-link facebook">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/vinceslink_1" target="_blank" class="social-link instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@vinceslink1?_r=1&_t=ZS-93wGhXnvipZ" target="_blank" class="social-link tiktok">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                </a>
+                <a href="https://wa.me/message/5XF6PFQZNCLTA1" target="_blank" class="social-link whatsapp">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Footer Top -->
+        <div class="footer-top">
+            <!-- Logo & Description -->
+            <div class="footer-column">
+                <div class="footer-logo-section">
+                    <img src="" alt="Vinceslink Logo" class="footer-logo-img">
+                    <span class="footer-logo-text">vinceslink</span>
+                </div>
+                <p class="footer-tagline">Everyday Essentials • Gadgets • Realty</p>
+                <p class="footer-description">Your one-stop destination for smart gadgets, daily essentials, and trusted real estate solutions in Nigeria.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-column">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#shop">Shop Now</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Our Locations -->
+            <div class="footer-column">
+                <h4 class="footer-heading">Our Locations</h4>
+                <div class="footer-location">
+                    <h5>Gadgets Hub</h5>
+                    <p>No. 12 Ijoko Rd, Opposite African Church<br>Sango, Ota, Ogun State</p>
+                </div>
+                <div class="footer-location">
+                    <h5>Super Store / Head Office</h5>
+                    <p>No. 91 Ishaka Road<br>Ijako, Ogun State</p>
+                </div>
+                <div class="footer-location">
+                    <h5>Branch Office</h5>
+                    <p>No. 42 Community Road<br>Egan Ijoko, Ogun State</p>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-column">
+                <h4 class="footer-heading">Get In Touch</h4>
+                <div class="footer-contact-item">
+                    <span class="footer-contact-icon">📞</span>
+                    <a href="tel:+2349078683552">+234 907 868 3552</a>
+                </div>
+                <div class="footer-contact-item">
+                    <span class="footer-contact-icon">✉️</span>
+                    <a href="mailto:vinceslink@gmail.com">vinceslink@gmail.com</a>
+                </div>
+                <div class="footer-contact-item">
+                    <span class="footer-contact-icon">💬</span>
+                    <a href="https://wa.me/message/5XF6PFQZNCLTA1" target="_blank">WhatsApp</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/share/17XjXSBeR1/?mibextid=wwXIfr" target="_blank" class="footer-social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/vinceslink_1" target="_blank" class="footer-social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@vinceslink1?_r=1&_t=ZS-93wGhXnvipZ" target="_blank" class="footer-social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-credits">
+                <p>In collaboration with <a href="https://www.paulfeng.com" target="_blank" class="partner-link">Paul Feng</a></p>
+            </div>
+            <div class="footer-copyright">
+                <p>Built with 🤍 by <a href="https://jappro.github.io/portfolio/" target="_blank" class="dev-link">Japheth</a></p>
+                <p>© 2024 Vinceslink. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Coming Soon Modal -->
+<div class="modal" id="comingSoonModal">
+    <div class="modal-content">
+        <h3>🚀 Coming Soon!</h3>
+        <p>This feature will be available when our shopping center launches.</p>
+        <button class="modal-close" onclick="closeModal()">Got it!</button>
+    </div>
+</div>
+
+<!-- Terms & Conditions Modal -->
+<div class="modal terms-modal" id="termsModal">
+    <div class="modal-content terms-content">
+        <h3 class="terms-title">Terms & Conditions</h3>
+        <div class="terms-body">
+            <h4>Welcome to Vinceslink!</h4>
+            <p>By accessing and using this website, you agree to comply with our terms and conditions. We value your privacy and are committed to protecting your personal information.</p>
+            
+            <p>Your data will be collected and processed in accordance with our Privacy Policy. We use cookies to enhance your browsing experience and provide personalized content.</p>
+            
+            <h4>By continuing, you consent to:</h4>
+            <ul>
+                <li>Our use of cookies for analytics and functionality</li>
+                <li>Collection of necessary information for orders and consultations</li>
+                <li>Communication regarding our products and services</li>
+                <li>Our terms of service and privacy practices</li>
+            </ul>
+            
+            <p>You can manage your preferences at any time. For full details, please read our complete Terms & Conditions and Privacy Policy.</p>
+        </div>
+        <div class="terms-buttons">
+            <button class="terms-btn deny-btn" onclick="closeTermsModal()">Deny</button>
+            <button class="terms-btn accept-btn" onclick="acceptTerms()">Accept All</button>
+        </div>
+    </div>
+</div>
 
 <script>
     // Hamburger Menu Toggle
@@ -1022,6 +2996,78 @@
                 navMenu.classList.remove('active');
             }
         });
+    });
+
+    // Coming Soon Modal Functions
+    function showComingSoon() {
+        const modal = document.getElementById('comingSoonModal');
+        modal.classList.add('show');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('comingSoonModal');
+        modal.classList.remove('show');
+    }
+
+    // Coming Soon Button
+    document.getElementById('comingSoonBtn').addEventListener('click', showComingSoon);
+
+    // Close modal when clicking outside
+    document.getElementById('comingSoonModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // FAQ Accordion Toggle
+    function toggleFAQ(button) {
+        const faqItem = button.parentElement;
+        const wasActive = faqItem.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Toggle current item if it wasn't active
+        if (!wasActive) {
+            faqItem.classList.add('active');
+        }
+    }
+
+    // Terms & Conditions Modal Functions
+    function showTermsModal() {
+        const modal = document.getElementById('termsModal');
+        modal.classList.add('show');
+    }
+
+    function closeTermsModal() {
+        const modal = document.getElementById('termsModal');
+        modal.classList.remove('show');
+        localStorage.setItem('termsAccepted', 'denied');
+    }
+
+    function acceptTerms() {
+        const modal = document.getElementById('termsModal');
+        modal.classList.remove('show');
+        localStorage.setItem('termsAccepted', 'true');
+    }
+
+    // Show Terms on first visit
+    window.addEventListener('load', function() {
+        const termsAccepted = localStorage.getItem('termsAccepted');
+        if (!termsAccepted) {
+            setTimeout(function() {
+                showTermsModal();
+            }, 1000);
+        }
+    });
+
+    // Close terms modal when clicking outside
+    document.getElementById('termsModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeTermsModal();
+        }
     });
 </script>
 
